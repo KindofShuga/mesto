@@ -44,4 +44,4 @@ function formSubmitHandler(evt) {
     jobInput.value = '';
     popupToggle();
 }
-submitButton.addEventListener('submit', formSubmitHandler);
+submitButton.addEventListener('click', formSubmitHandler);
