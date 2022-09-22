@@ -1,0 +1,13 @@
+.cards__like {
+    position: absolute;
+    right: 20px;
+    bottom: 30px;
+    max-width: 22px;
+    object-fit: cover;
+    cursor: pointer;
+    transition: opacity .2s ease-out;
+}
+
+.cards__like:hover {
+    opacity: .5;
+}
