@@ -1,8 +1,10 @@
 .cards__item {
     width: 100%;
-    position: relative;
     text-decoration: none;
     background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
     color: black;
     overflow: hidden;
     border-radius: 10px;

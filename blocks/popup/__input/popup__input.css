@@ -1,6 +1,6 @@
 .popup__input {
-    padding: 0 0 13px;
-    margin-bottom: 30px;
+    padding: 0 0 8px;
+    margin-bottom: 31px;
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;
@@ -13,7 +13,7 @@
     margin-bottom: 0;
 }
 
-.popup__input::placeholder {
+/* .popup__input::placeholder {
     color: black;
     opacity: 1;
 }
@@ -24,4 +24,4 @@
 
 .popup__input::-ms-input-placeholder {
     color: black;
-}
+} */

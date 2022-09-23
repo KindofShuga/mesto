@@ -1,33 +1,34 @@
-let popupOpenButton = document.querySelector('.profile__edit-btn');
+let profileEditButton = document.querySelector('.profile__edit-btn');
 let popup = document.querySelector('.popup');
+let formElement = popup.querySelector('.popup__form')
 let popupCloseButton = popup.querySelector('.popup__close-btn');
-let submitButton = popup.querySelector ('.popup__submit-btn');
-let nameInput = popup.querySelector('.popup__input_name');
-let jobInput = popup.querySelector('.popup__input_job');
+let popupSubmitButton = popup.querySelector ('.popup__submit-btn');
+let nameInput = popup.querySelector('.popup__input_el_name');
+let jobInput = popup.querySelector('.popup__input_el_job');
 let profileTitle = document.querySelector('.profile__title');
 let profileDescription = document.querySelector('.profile__description');
-nameInput.setAttribute('placeholder', profileTitle.textContent);
-jobInput.setAttribute('placeholder', profileDescription.textContent);
-nameInput.value = '';
-jobInput.value = '';
+// nameInput.value = '';
+// jobInput.value = '';
 
-let popupToggle = function() {
-    popup.classList.toggle('popup__opened');
-    nameInput.value = '';
-    jobInput.value = '';
+let popupOpen = function() {
+    popup.classList.add('popup__opened');
 }
-popupOpenButton.addEventListener('click', popupToggle);
+profileEditButton.addEventListener('click', popupOpen);
 
-
-popupCloseButton.addEventListener('click', popupToggle);
-
-
-let popupRemoveByOverlay = function(event) {
-    if (event.target == event.currentTarget){
-        popupToggle();
-    }
+let popupClose = function() {
+    popup.classList.remove('popup__opened');
+    nameInput.value = profileTitle.textContent;
+    jobInput.value = profileDescription.textContent;
 }
-popup.addEventListener('click', popupRemoveByOverlay);
+popupCloseButton.addEventListener('click', popupClose);
+
+
+// let popupRemoveByOverlay = function(event) {
+//     if (event.target == event.currentTarget){
+//         popupToggle();
+//     }
+// }
+// popup.addEventListener('click', popupRemoveByOverlay);
 
 
 function formSubmitHandler(evt) {
@@ -40,8 +41,6 @@ function formSubmitHandler(evt) {
     }
     nameInput.setAttribute('placeholder', profileTitle.textContent);
     jobInput.setAttribute('placeholder', profileDescription.textContent);
-    nameInput.value = '';
-    jobInput.value = '';
-    popupToggle();
+    popupClose();
 }
-submitButton.addEventListener('click', formSubmitHandler);
+formElement.addEventListener('submit', formSubmitHandler);

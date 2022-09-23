@@ -15,58 +15,72 @@
             <img src="./images/kusto.jpg" alt="Аватар" class="profile__avatar">
             <div class="profile__info">
                 <h1 class="profile__title">Жак-Ив Кусто</h1>
-                <img src="./images/edit-button.svg" alt="Кнопка редактирования" class="profile__edit-btn">
+                <button type="button" aria-label="Редактировать профиль" class="button profile__edit-btn"></button>
                 <p class="profile__description">Исследователь океана</p>
             </div>
-            <img src="./images/submit-button.svg" alt="Кнопка добавить" class="profile__submit-btn">
+            <button type="button" aria-label="Добавить место" class="button profile__submit-btn"></button>
         </section>
         <section>
             <ul class="cards">
                 <li class="cards__item">
                     <img src="./images/Karachayevsk.jpg" alt="Природа Карачаевск" class="cards__image">
-                    <h3 class="cards__title">Карачаевск</h3>
-                    <img src="./images/like.svg" alt="Кнопка нравится" class="cards__like cards__like_active">
+                    <div class="cards__name">
+                        <h3 class="cards__title">Карачаевск</h3>
+                        <img src="./images/like.svg" alt="Кнопка нравится" class="cards__like cards__like_active">
+                    </div>
                 </li>
                 <li class="cards__item">
                     <img src="./images/Elbrus.jpg" alt="Гора Эльбрус" class="cards__image">
-                    <h3 class="cards__title">Гора Эльбрус</h3>
-                    <img src="./images/like.svg" alt="Кнопка нравится" class="cards__like cards__like_active">
+                    <div class="cards__name">
+                        <h3 class="cards__title">Гора Эльбрус</h3>
+                        <img src="./images/like.svg" alt="Кнопка нравится" class="cards__like cards__like_active">
+                    </div>
                 </li>
                 <li class="cards__item">
                     <img src="./images/Dombai.jpg" alt="Горы Домбая" class="cards__image">
-                    <h3 class="cards__title">Домбай</h3>
-                    <img src="./images/like.svg" alt="Кнопка нравится" class="cards__like cards__like_active">
+                    <div class="cards__name">
+                        <h3 class="cards__title">Домбай</h3>
+                        <img src="./images/like.svg" alt="Кнопка нравится" class="cards__like cards__like_active">
+                    </div>
                 </li>
                 <li class="cards__item">
                     <img src="./images/Elbrus.jpg" alt="Гора Эльбрус" class="cards__image">
-                    <h3 class="cards__title">Гора Эльбрус</h3>
-                    <img src="./images/like.svg" alt="Кнопка нравится" class="cards__like cards__like_active">
+                    <div class="cards__name">
+                        <h3 class="cards__title">Гора Эльбрус</h3>
+                        <img src="./images/like.svg" alt="Кнопка нравится" class="cards__like cards__like_active">
+                    </div>
                 </li>
                 <li class="cards__item">
                     <img src="./images/Dombai.jpg" alt="Горы Домбая" class="cards__image">
-                    <h3 class="cards__title">Домбай</h3>
-                    <img src="./images/like.svg" alt="Кнопка нравится" class="cards__like cards__like_active">
+                    <div class="cards__name">
+                        <h3 class="cards__title">Домбай</h3>
+                        <img src="./images/like.svg" alt="Кнопка нравится" class="cards__like cards__like_active">
+                    </div>
                 </li>
                 <li class="cards__item">
                     <img src="./images/Karachayevsk.jpg" alt="Природа Карачаевск" class="cards__image">
-                    <h3 class="cards__title">Карачаево-Черкессия</h3>
-                    <img src="./images/like.svg" alt="Кнопка нравится" class="cards__like cards__like_active">
+                    <div class="cards__name">
+                        <h3 class="cards__title">Карачаево-Черкессия</h3>
+                        <img src="./images/like.svg" alt="Кнопка нравится" class="cards__like cards__like_active">
+                    </div>
                 </li>
             </ul>
         </section>
     </main>
-    <section class="popup">
-        <form class="popup__container">
-            <img src="./images/close-button.svg" alt="Кнопка закрыть" class="popup__close-btn">
-            <h3 class="popup__title">Редактировать профиль</h3>
-            <input type="text" class="popup__input popup__input_name">
-            <input type="text" class="popup__input popup__input_job">
-            <input type="submit" value="Сохранить" class="popup__submit-btn">
-        </form>
-    </section>
     <footer class="footer">
         <p class="footer__copyright">© 2020 Mesto Russia</p>
     </footer>
-    <script src="./scripts/script.js"></script>
+    <div class="popup">
+        <div class="popup__container">
+            <button type="button" aria-label="Вернуться назад" class="button popup__close-btn"></button>
+            <form name="form" class="popup__form">
+                <h3 class="popup__heading">Редактировать профиль</h3>
+                <input type="text" value="Жак-Ив Кусто" class="popup__input popup__input_el_name">
+                <input type="text" value="Исследователь океана" class="popup__input popup__input_el_job">
+                <button type="submit" aria-label="Сохранить изменения" class="button popup__submit-btn">Сохранить</button>
+            </form>
+        </div>
+    </div>
+    <script defer src="./scripts/script.js"></script>
 </body>
 </html>

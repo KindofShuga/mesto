@@ -1,13 +1,12 @@
 .profile__submit-btn {
     min-width: 150px;
-    max-height: 50px;
-    background: none;
-    box-shadow: none;
-    cursor: pointer;
+    min-height: 50px;
+    background-image: url(../../../images/submit-button.svg);
+    background-size: 22px 22px;
+    background-repeat: no-repeat;
+    background-position: center;
     border: 2px solid white;
-    object-fit: none;
     border-radius: 2px;
-    box-sizing: border-box;
     transition: opacity .2s ease-in;
 }
 
@@ -18,5 +17,6 @@
 @media screen and (max-width: 700px) {
     .profile__submit-btn {
         min-width: 100%;
+        background-size: 16px 16px;
     }
 }

@@ -1,9 +1,8 @@
 .cards__like {
-    position: absolute;
-    right: 20px;
-    bottom: 30px;
     max-width: 22px;
-    object-fit: cover;
+    /* justify-self: flex-end;
+    align-self: center; */
+    object-fit: contain;
     cursor: pointer;
     transition: opacity .2s ease-out;
 }
