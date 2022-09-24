@@ -1,9 +1,9 @@
 .cards__like {
-    max-width: 22px;
-    /* justify-self: flex-end;
-    align-self: center; */
-    object-fit: contain;
-    cursor: pointer;
+    min-width: 22px;
+    min-height: 19px;
+    background-image: url(../../../images/like.svg);
+    background-size: cover;
+    border: 0;
     transition: opacity .2s ease-out;
 }
 
