@@ -13,15 +13,15 @@
     margin-bottom: 0;
 }
 
-/* .popup__input::placeholder {
-    color: black;
+.popup__input::placeholder {
+    color: #C4C4C4;
     opacity: 1;
 }
 
 .popup__input:-ms-input-placeholder {
-    color: black;
+    color: #C4C4C4;
 }
 
 .popup__input::-ms-input-placeholder {
-    color: black;
-} */
+    color: #C4C4C4;
+}

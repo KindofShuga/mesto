@@ -67,7 +67,7 @@
             </div>
         </section>
     </main>
-    <template id="card-template">
+    <template id="cards-template">
         <div class="cards__item">
             <img src="" alt="" class="cards__image">
             <div class="cards__name">
@@ -96,10 +96,17 @@
             <button type="button" aria-label="Вернуться назад" class="button popup__close-btn"></button>
             <form name="form" class="popup__form">
                 <h3 class="popup__heading">Новое место</h3>
-                <input type="text" class="popup__input popup__input_el_name">
-                <input type="text" class="popup__input popup__input_el_job">
-                <button type="submit" aria-label="Сохранить изменения" class="button popup__submit-btn">Создать</button>
+                <input type="text" placeholder="Название" class="popup__input popup__input_el_title">
+                <input type="url" placeholder="Ссылка на картинку" class="popup__input popup__input_el_img">
+                <button type="submit" aria-label="Добавить место" class="button popup__submit-btn">Создать</button>
             </form>
+        </div>
+    </div>
+    <div class="popup popup-image">
+        <div class="popup-image__container">
+            <button type="button" aria-label="Вернуться назад" class="button popup-image__close-btn"></button>
+            <img src="" alt="" class="popup-image__image">
+            <h3 class="popup-image__heading"></h3>
         </div>
     </div>
     <script defer src="./scripts/script.js"></script>
