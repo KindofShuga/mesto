@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./pages/index.css">
+    <script defer src="./scripts/cards.js"></script>
+    <script defer src="./scripts/index.js"></script>
     <title>Место</title>
 </head>
 <body class="root">
     <header class="header">
-        <img src="./images/logo.svg" alt="Логотип Место" class="header__logo">
+        <img src="./images/logo-icon.svg" alt="Логотип Место" class="header__logo">
     </header>
     <main>
         <section class="profile">
@@ -18,58 +20,16 @@
                 <button type="button" aria-label="Редактировать профиль" class="button profile__edit-btn"></button>
                 <p class="profile__description">Исследователь океана</p>
             </div>
-            <button type="button" aria-label="Добавить место" class="button profile__submit-btn"></button>
+            <button type="button" aria-label="Добавить место" class="button profile__add-btn"></button>
         </section>
         <section>
             <div class="cards">
-                <!-- <li class="cards__item">
-                    <img src="./images/Karachayevsk.jpg" alt="Природа Карачаевск" class="cards__image">
-                    <div class="cards__name">
-                        <h3 class="cards__title">Карачаевск</h3>
-                        <button type="button" aria-label="Поставить нравится" class="button cards__like cards__like_active"></button>
-                    </div>
-                </li>
-                <li class="cards__item">
-                    <img src="./images/Elbrus.jpg" alt="Гора Эльбрус" class="cards__image">
-                    <div class="cards__name">
-                        <h3 class="cards__title">Гора Эльбрус</h3>
-                        <button type="button" aria-label="Поставить нравится" class="button cards__like cards__like_active"></button>
-                    </div>
-                </li>
-                <li class="cards__item">
-                    <img src="./images/Dombai.jpg" alt="Горы Домбая" class="cards__image">
-                    <div class="cards__name">
-                        <h3 class="cards__title">Домбай</h3>
-                        <button type="button" aria-label="Поставить нравится" class="button cards__like cards__like_active"></button>
-                    </div>
-                </li>
-                <li class="cards__item">
-                    <img src="./images/Elbrus.jpg" alt="Гора Эльбрус" class="cards__image">
-                    <div class="cards__name">
-                        <h3 class="cards__title">Гора Эльбрус</h3>
-                        <button type="button" aria-label="Поставить нравится" class="button cards__like cards__like_active"></button>
-                    </div>
-                </li>
-                <li class="cards__item">
-                    <img src="./images/Dombai.jpg" alt="Горы Домбая" class="cards__image">
-                    <div class="cards__name">
-                        <h3 class="cards__title">Домбай</h3>
-                        <button type="button" aria-label="Поставить нравится" class="button cards__like cards__like_active"></button>
-                    </div>
-                </li>
-                <li class="cards__item">
-                    <img src="./images/Karachayevsk.jpg" alt="Природа Карачаевск" class="cards__image">
-                    <div class="cards__name">
-                        <h3 class="cards__title">Карачаево-Черкессия</h3>
-                        <button type="button" aria-label="Поставить нравится" class="button cards__like cards__like_active"></button>
-                    </div>
-                </li> -->
             </div>
         </section>
     </main>
     <template id="cards-template">
         <div class="cards__item">
-            <img src="./images/Karachayevsk.jpg" alt="Фото карточки" class="cards__image">
+            <img src="#" alt="Фото карточки" class="cards__image">
             <div class="cards__name">
                 <h3 class="cards__title"></h3>
                 <button type="button" aria-label="Поставить нравится" class="button cards__like"></button>
@@ -82,33 +42,32 @@
     </footer>
     <div class="popup popup-profile">
         <div class="popup__container">
-            <button type="button" aria-label="Вернуться назад" class="button popup__close-btn"></button>
+            <button type="button" aria-label="Закрыть" class="button popup__close-btn"></button>
             <form name="form" class="popup__form">
                 <h3 class="popup__heading">Редактировать профиль</h3>
-                <input type="text" class="popup__input popup__input_el_name">
-                <input type="text" class="popup__input popup__input_el_job">
+                <input type="text" placeholder="Имя" class="popup__input popup__input_el_name" required>
+                <input type="text" placeholder="О себе" class="popup__input popup__input_el_job" required>
                 <button type="submit" aria-label="Сохранить изменения" class="button popup__submit-btn">Сохранить</button>
             </form>
         </div>
     </div>
-    <div class="popup popup-card">
+    <div class="popup popup-place">
         <div class="popup__container">
-            <button type="button" aria-label="Вернуться назад" class="button popup__close-btn"></button>
+            <button type="button" aria-label="Закрыть" class="button popup__close-btn"></button>
             <form name="form" class="popup__form">
                 <h3 class="popup__heading">Новое место</h3>
-                <input type="text" placeholder="Название" class="popup__input popup__input_el_title">
-                <input type="url" placeholder="Ссылка на картинку" class="popup__input popup__input_el_img">
+                <input type="text" placeholder="Название" class="popup__input popup__input_el_title" required>
+                <input type="url" placeholder="Ссылка на картинку" class="popup__input popup__input_el_img" required>
                 <button type="submit" aria-label="Добавить место" class="button popup__submit-btn">Создать</button>
             </form>
         </div>
     </div>
     <div class="popup popup-image">
         <div class="popup-image__container">
-            <button type="button" aria-label="Вернуться назад" class="button popup-image__close-btn"></button>
-            <img src="./images/Karachayevsk.jpg" alt="Фото карточки" class="popup-image__image">
+            <button type="button" aria-label="Закрыть" class="button popup-image__close-btn"></button>
+            <img src="#" alt="Фото карточки" class="popup-image__image">
             <h3 class="popup-image__heading"></h3>
         </div>
     </div>
-    <script defer src="./scripts/script.js"></script>
 </body>
 </html>
