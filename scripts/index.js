@@ -41,11 +41,11 @@ currentCard.querySelector('.cards__image').addEventListener('click', () => {
 
 initialCards.reverse().forEach(addCard);
 
-function createCard(input) {
+function createCard(object) {
   const newCard = template.cloneNode(true);
-  newCard.querySelector('.cards__image').src = input.link;
-  newCard.querySelector('.cards__image').alt = input.name;
-  newCard.querySelector('.cards__title').textContent = input.name;
+  newCard.querySelector('.cards__image').src = object.link;
+  newCard.querySelector('.cards__image').alt = object.name;
+  newCard.querySelector('.cards__title').textContent = object.name;
   setCardListeners(newCard);
   return newCard
 }
