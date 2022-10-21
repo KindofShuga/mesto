@@ -41,7 +41,7 @@ currentCard.querySelector('.cards__image').addEventListener('click', () => {
 
 initialCards.reverse().forEach(addCard);
 
-function createCard(object) {
+function cardObject(object) {
   const newCard = template.cloneNode(true);
   newCard.querySelector('.cards__image').src = object.link;
   newCard.querySelector('.cards__image').alt = object.name;
@@ -50,7 +50,7 @@ function createCard(object) {
   return newCard
 }
 function addCard(item) {
-  const currentItem = createCard(item);
+  const currentItem = cardObject(item);
   cards.prepend(currentItem);
 }
 
@@ -69,8 +69,7 @@ profileAddButton.addEventListener('click', function() {
   popupPlaceFormElement.reset();
 });
 
-
-const closePopup = function(currentPopup) {
+const closePopup = (currentPopup) => {
   currentPopup.classList.remove('popup__opened');
 }
 popupProfileCloseButton.addEventListener('click', function() {
@@ -80,12 +79,78 @@ popupPlaceCloseButton.addEventListener('click', function() {
   closePopup(popupPlace);
 });
 
-// let popupRemoveByOverlay = function(event) {
-//     if (event.target == event.currentTarget){
-//         popupToggle();
-//     }
-// }
-// popup.addEventListener('click', popupRemoveByOverlay);
+
+
+const showError = (form, input, errorMessage) => {
+  const errorElement = form.querySelector(`.${input.id}-error`);
+  input.classList.add(settings.inputErrorClass);
+  errorElement.classList.add(settings.errorClass)
+  errorElement.textContent = errorMessage;
+}
+const hideError = (form, input) => {
+  const errorElement = form.querySelector(`.${input.id}-error`);
+  input.classList.remove(settings.inputErrorClass);
+  errorElement.classList.remove(settings.errorClass);
+  errorElement.textContent = '';
+}
+
+
+const hasInvalidInput = (inputList) => {
+  return inputList.some((input) => {
+    return !input.validity.valid;
+  });
+};
+const toggleButtonState = (inputList, button) => {
+  if (hasInvalidInput(inputList)) {
+    button.classList.add(settings.inactiveButtonClass);
+    button.setAttribute('disabled', true)
+  } else {
+    button.classList.remove(settings.inactiveButtonClass);
+    button.removeAttribute('disabled', true)
+  }
+};
+
+const setEventListeners = (form) => {
+    const currentPopup = form.closest('.popup');
+    const removePopupByOverlay = (event) => {
+      if (event.target == event.currentTarget){
+        closePopup(currentPopup);
+      }
+    };
+    const removePopupByEsc = (event) => {
+      if (event.key === 'Escape') {
+          closePopup(currentPopup);
+      }
+    };
+    currentPopup.addEventListener('click', removePopupByOverlay);
+    currentPopup.addEventListener('keydown', removePopupByEsc);
+    const inputList = Array.from(form.querySelectorAll(settings.inputSelector));
+    const buttonElement = form.querySelector(settings.submitButtonSelector);
+    toggleButtonState(inputList, buttonElement);
+    inputList.forEach((input) => {
+      input.addEventListener('input', () => {
+        isValid(form, input);
+        toggleButtonState(inputList, buttonElement);
+      });
+      popupPlace.addEventListener('click', function(event) {
+        if (event.key === 'Escape') {
+          placeFormSubmitHandler(event);
+        };
+      });
+    });
+};
+
+
+const enableValidation = (settings) => {
+  const formList = Array.from(document.querySelectorAll(settings.formSelector));
+  formList.forEach((form) => {
+    setEventListeners(form);
+  });
+};
+enableValidation(settings);
+
+
+
 
 
 function profileFormSubmitHandler(evt) {
