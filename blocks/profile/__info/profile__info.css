@@ -1,4 +1,5 @@
 .profile__info {
+    max-width: 550px;
     margin: 0 auto 0 0;
     display: grid;
     justify-content: center;

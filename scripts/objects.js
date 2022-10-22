@@ -32,4 +32,4 @@ const initialCards = [
     inactiveButtonClass: 'popup__submit-btn_inactive',
     inputErrorClass: 'popup__input_type_error',
     errorClass: 'popup__error_visible'
-  }
+  };
