@@ -82,10 +82,10 @@ function profileFormSubmitHandler(evt) {
 function placeFormSubmitHandler(evt) {
   evt.preventDefault();
   const newCardObj = {name: titleInput.value, link: imgInput.value};
-  const addButton = popupPlace.querySelector('.popup__submit-btn');
+  const submitButton = popupPlace.querySelector('.popup__submit-btn');
   addCard(newCardObj);
   closePopup(popupPlace);
-  addInactiveButton(addButton);
+  addInactiveButton(submitButton);
 };
 
 
