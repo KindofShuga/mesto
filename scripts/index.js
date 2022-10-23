@@ -51,29 +51,26 @@ function addCard(item) {
   const currentItem = createCard(item);
   cards.prepend(currentItem);
 };
-const overlayHandler = (currentPopup) => {
-  return removePopupByOverlay = (event) => {
-    if (event.target == event.currentTarget){
-      closePopup(currentPopup);
-      };
-  };
-};
-const keyHandler = (currentPopup) => {
-  return removePopupByEsc = (event) => {
-    if (event.key === 'Escape') {
-        closePopup(currentPopup);
+
+const removePopupByOverlay = (event) => {
+  if (event.target == event.currentTarget){
+    closePopup(event.target);
     };
+};
+const removePopupByEsc = (event) => {
+  const popupOpened = event.currentTarget.querySelector('.popup__opened');
+  if (event.key === 'Escape') {
+      closePopup(popupOpened);
   };
 };
 const openPopup = function(currentPopup) {
   currentPopup.classList.add('popup__opened');
-  madeButtonInactive(settings, currentPopup);
-  document.addEventListener('keydown', keyHandler(currentPopup));
-  currentPopup.addEventListener('click', overlayHandler(currentPopup));
+  document.addEventListener('keydown', removePopupByEsc);
+  currentPopup.addEventListener('click', removePopupByOverlay);
 };
 const closePopup = (currentPopup) => {
-  document.removeEventListener('keydown', keyHandler(currentPopup));
-  currentPopup.removeEventListener('click', overlayHandler(currentPopup));
+  document.removeEventListener('keydown', removePopupByEsc);
+  currentPopup.removeEventListener('click', removePopupByOverlay);
   currentPopup.classList.remove('popup__opened');
 };
 function profileFormSubmitHandler(evt) {
@@ -85,9 +82,10 @@ function profileFormSubmitHandler(evt) {
 function placeFormSubmitHandler(evt) {
   evt.preventDefault();
   const newCardObj = {name: titleInput.value, link: imgInput.value};
+  const addButton = popupPlace.querySelector('.popup__submit-btn');
   addCard(newCardObj);
   closePopup(popupPlace);
-  toggleButtonState
+  addInactiveButton(addButton);
 };
 
 
