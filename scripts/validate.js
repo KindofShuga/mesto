@@ -1,4 +1,4 @@
-const isValid = (form, input) => {
+const checkValidity = (form, input) => {
     if (!input.validity.valid) {
       showError(form, input, input.validationMessage);
     }
@@ -37,7 +37,7 @@ const setEventListeners = (form) => {
   addInactiveButton(buttonElement);
     inputList.forEach((input) => {
       input.addEventListener('input', () => {
-        isValid(form, input);
+        checkValidity(form, input);
         if(hasInvalidInput(inputList)){
           addInactiveButton(buttonElement);
         } else {

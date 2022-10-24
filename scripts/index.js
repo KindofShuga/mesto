@@ -58,9 +58,9 @@ const removePopupByOverlay = (event) => {
     };
 };
 const removePopupByEsc = (event) => {
-  const popupOpened = event.currentTarget.querySelector('.popup__opened');
   if (event.key === 'Escape') {
-      closePopup(popupOpened);
+    const popupOpened = event.currentTarget.querySelector('.popup__opened');
+    closePopup(popupOpened);
   };
 };
 const openPopup = function(currentPopup) {
@@ -73,13 +73,13 @@ const closePopup = (currentPopup) => {
   currentPopup.removeEventListener('click', removePopupByOverlay);
   currentPopup.classList.remove('popup__opened');
 };
-function profileFormSubmitHandler(evt) {
+function submitProfileForm(evt) {
   evt.preventDefault();
   profileTitle.textContent = nameInput.value;
   profileDescription.textContent = jobInput.value;
   closePopup(popupProfile);
 };
-function placeFormSubmitHandler(evt) {
+function submitPlaceForm(evt) {
   evt.preventDefault();
   const newCardObj = {name: titleInput.value, link: imgInput.value};
   const submitButton = popupPlace.querySelector('.popup__submit-btn');
@@ -109,7 +109,7 @@ popupImageCloseButton.addEventListener('click', () => {
   closePopup(popupImage);
 });
 
-popupProfileFormElement.addEventListener('submit', profileFormSubmitHandler);
-popupPlaceFormElement.addEventListener('submit', placeFormSubmitHandler);
+popupProfileFormElement.addEventListener('submit', submitProfileForm);
+popupPlaceFormElement.addEventListener('submit', submitPlaceForm);
 
 initialCards.reverse().forEach(addCard);
