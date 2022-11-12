@@ -3,7 +3,8 @@ import FormValidator from './FormValidator.js';
 const initialCards = [
   {
     name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
+    like: '.cards__like'
   },
   {
     name: 'Челябинская область',
@@ -32,7 +33,9 @@ const settings = {
   submitButtonSelector: '.popup__submit-btn',
   inactiveButtonClass: 'popup__submit-btn_inactive',
   inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible'
+  errorClass: 'popup__error_visible',
+  likeSelector: '.cards__like',
+  likeActiveClass: 'cards__like_active'
 };
 
 const profileEditButton = document.querySelector('.profile__edit-btn');
@@ -57,8 +60,9 @@ const popupImageImg = popupImage.querySelector('.popup-image__image');
 const popupImageHeading = popupImage.querySelector('.popup-image__heading');
 const popupImageCloseButton = popupImage.querySelector('.popup-image__close-btn');
 
-const cards = document.querySelector('.cards');
-const formList = Array.from(document.querySelectorAll(settings.formSelector));
+const cardsContainer = document.querySelector('.cards');
+const profileValidation = new FormValidator(settings, popupProfileFormElement);
+const newCardValidation = new FormValidator(settings, popupPlaceFormElement);
 
 const removePopupByOverlay = (event) => {
   if (event.target == event.currentTarget){
@@ -67,7 +71,7 @@ const removePopupByOverlay = (event) => {
 };
 const removePopupByEsc = (event) => {
   if (event.key === 'Escape') {
-    const popupOpened = event.currentTarget.querySelector('.popup__opened');
+    const popupOpened = document.querySelector('.popup__opened');
     closePopup(popupOpened);
   };
 };
@@ -81,22 +85,24 @@ const closePopup = (currentPopup) => {
   currentPopup.removeEventListener('click', removePopupByOverlay);
   currentPopup.classList.remove('popup__opened');
 };
-function submitProfileForm(evt) {
+const addCard = (item) => {
+  const card = new Card(item, '#cards-template');
+  const cardElement = card.generateCard();
+  cardsContainer.prepend(cardElement); 
+};
+const submitProfileForm = (evt) => {
   evt.preventDefault();
   profileTitle.textContent = nameInput.value;
   profileDescription.textContent = jobInput.value;
   closePopup(popupProfile);
+  profileValidation.enableValidation();
 };
-function submitPlaceForm(evt) {
+const submitPlaceForm = (evt) => {
   evt.preventDefault();
   const newCardObj = {name: titleInput.value, link: imgInput.value};
-  const submitButton = popupPlace.querySelector('.popup__submit-btn');
-  const card = new Card(newCardObj, '#cards-template');
-  const cardElement = card.generateCard();
-  cards.append(cardElement);
+  addCard(newCardObj);
   closePopup(popupPlace);
-  submitButton.setAttribute('disabled', true);
-  submitButton.classList.add(settings.inactiveButtonClass);
+  newCardValidation.enableValidation(); 
 };
 
 
@@ -116,17 +122,17 @@ popupProfileCloseButton.addEventListener('click', function() {
 popupPlaceCloseButton.addEventListener('click', function() {
   closePopup(popupPlace);
 });
+popupImageCloseButton.addEventListener('click', () => {
+  closePopup(popupImage);
+});
 popupProfileFormElement.addEventListener('submit', submitProfileForm);
 popupPlaceFormElement.addEventListener('submit', submitPlaceForm);
 
-initialCards.reverse().forEach((item) => {
-  const card = new Card(item, '#cards-template');
-  const cardElement = card.generateCard();
-  cards.prepend(cardElement);
-});
-formList.forEach((form) => {
-  const formValidator = new FormValidator(settings, form);
-  formValidator.enableValidation();
-  });
 
-export {popupImage, popupImageImg, popupImageHeading, popupImageCloseButton, openPopup, closePopup}
+initialCards.reverse().forEach(addCard);
+
+profileValidation.enableValidation();
+newCardValidation.enableValidation();
+
+  
+export {popupImage, popupImageImg, popupImageHeading, openPopup}

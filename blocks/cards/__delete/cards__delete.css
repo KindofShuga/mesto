@@ -1,4 +1,4 @@
-.cards__delite {
+.cards__delete {
     min-width: 18px;
     min-height: 19px;
     position: absolute;
@@ -10,6 +10,6 @@
     transition: opacity .2s ease-out;
 }
 
-.cards__delite:hover {
+.cards__delete:hover {
     opacity: .6;
 }

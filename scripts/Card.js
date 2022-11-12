@@ -1,4 +1,4 @@
-import {popupImage, popupImageImg, popupImageHeading, popupImageCloseButton, openPopup, closePopup} from './index.js'
+import {popupImage, popupImageImg, popupImageHeading, openPopup} from './index.js'
 
 export default class Card {
   constructor(data, templateSelector) {
@@ -16,31 +16,39 @@ export default class Card {
   }
   generateCard() {
     this._element = this._getTemplate();
+    this._imageElement = this._element.querySelector('.cards__image');
+    this._likeElement = this._element.querySelector('.cards__like');
+    this._deleteElement = this._element.querySelector('.cards__delete');
     this._setEventListeners();
 
-    this._elementImage = this._element.querySelector('.cards__image');
-    this._elementImage.src = this._link;
-    this._elementImage.alt = this._name;
+    this._imageElement.src = this._link;
+    this._imageElement.alt = this._name;
     this._element.querySelector('.cards__title').textContent = this._name;
 
     return this._element;
   }
-  
+  _enablePopupImage() {
+    popupImageImg.src = this._link;
+    popupImageImg.alt = this._name;
+    popupImageHeading.textContent = this._name;
+    openPopup(popupImage);
+  }
+  _activateLike() {
+    this._likeElement.classList.toggle('cards__like_active');
+  }
+  _deleteCard() {
+    this._element.remove();
+    this._element = null;
+  }
   _setEventListeners() {
-    this._element.querySelector('.cards__image').addEventListener('click', () => {
-      popupImageImg.src = this._link;
-      popupImageImg.alt = this._name;
-      popupImageHeading.textContent = this._name;
-      openPopup(popupImage);
-      popupImageCloseButton.addEventListener('click', () => {
-        closePopup(popupImage);
-      });
+    this._imageElement.addEventListener('click', () => {
+      this._enablePopupImage();
     });
-    this._element.querySelector('.cards__like').addEventListener('click', (event) => {
-          event.target.classList.toggle('cards__like_active');
+    this._likeElement.addEventListener('click', () => {
+      this._activateLike();
     });
-    this._element.querySelector('.cards__delite').addEventListener('click', () => {
-      this._element.remove();
+    this._deleteElement.addEventListener('click', () => {
+      this._deleteCard();
     });
   }
 };
