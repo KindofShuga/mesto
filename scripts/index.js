@@ -85,24 +85,26 @@ const closePopup = (currentPopup) => {
   currentPopup.removeEventListener('click', removePopupByOverlay);
   currentPopup.classList.remove('popup__opened');
 };
-const addCard = (item) => {
+const createCard = (item) => {
   const card = new Card(item, '#cards-template');
   const cardElement = card.generateCard();
-  cardsContainer.prepend(cardElement); 
+  return cardElement;
+};
+const addCard = (item) => {
+  const cardElement = createCard(item);
+  cardsContainer.prepend(cardElement);
 };
 const submitProfileForm = (evt) => {
   evt.preventDefault();
   profileTitle.textContent = nameInput.value;
   profileDescription.textContent = jobInput.value;
   closePopup(popupProfile);
-  profileValidation.enableValidation();
 };
 const submitPlaceForm = (evt) => {
   evt.preventDefault();
   const newCardObj = {name: titleInput.value, link: imgInput.value};
   addCard(newCardObj);
   closePopup(popupPlace);
-  newCardValidation.enableValidation(); 
 };
 
 
@@ -111,10 +113,12 @@ profileEditButton.addEventListener('click', function() {
   openPopup(popupProfile);
   nameInput.value = profileTitle.textContent;
   jobInput.value = profileDescription.textContent;
+  profileValidation.resetValidation();
 });
 profileAddButton.addEventListener('click', function() {
   openPopup(popupPlace);
   popupPlaceFormElement.reset();
+  newCardValidation.resetValidation();
 });
 popupProfileCloseButton.addEventListener('click', function() {
   closePopup(popupProfile);

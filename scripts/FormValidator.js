@@ -47,6 +47,12 @@ export default class FormValidator {
       this._removeInactiveButton();
     } 
   };
+  resetValidation() {
+    this._toggleButtonState();
+    this._inputList.forEach((inputElement) => {
+      this._hideError(inputElement)
+    });
+  }
   _setEventListeners() {
     this._inputList = Array.from(this._form.querySelectorAll(this._input));
     this._buttonElement = this._form.querySelector(this._submitButton);
