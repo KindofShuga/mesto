@@ -1,0 +1,19 @@
+// {
+//   "name": "mesto",
+//   "version": "0.0.1",
+//   "description": "* Интро\r * Функционал\r * Новые Техники",
+//   "main": "index.js",
+//   "scripts": {
+//     "test": "echo \"Error: no test specified\" && exit 1"
+//   },
+//   "repository": {
+//     "type": "git",
+//     "url": "git+https://github.com/KindofShuga/mesto.git"
+//   },
+//   "author": "Alina T.",
+//   "license": "ISC",
+//   "bugs": {
+//     "url": "https://github.com/KindofShuga/mesto/issues"
+//   },
+//   "homepage": "https://github.com/KindofShuga/mesto#readme"
+// }
