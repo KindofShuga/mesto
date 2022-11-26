@@ -17,6 +17,8 @@ module.exports = {
         port: 8080,
         open: true
     },
+    // devtool: 'eval-cheap-source-map',
+    devtool: 'eval-source-map',
     module: {
         rules: [
             {
@@ -53,7 +55,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: './src/index.html'
+            template: './src/index.html',
         }),
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin()

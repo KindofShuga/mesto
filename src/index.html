@@ -45,12 +45,12 @@
             <form name="profile" class="popup__form" novalidate>
                 <h3 class="popup__heading">Редактировать профиль</h3>
                 <label class="popup__field">
-                    <input type="text" id="name-input" name="name-input" class="popup__input popup__input_el_name"
+                    <input type="text" id="name-input" name="name" class="popup__input popup__input_el_name"
                         placeholder="Имя" minlength="2" maxlength="40" required>
                     <span class="name-input-error"></span>
                 </label>
                 <label class="popup__field">
-                    <input type="text" id="job-input" name="job-input" class="popup__input popup__input_el_job"
+                    <input type="text" id="job-input" name="job" class="popup__input popup__input_el_job"
                         placeholder="О себе" minlength="2" maxlength="200" required>
                     <span class="job-input-error"></span>
                 </label>
@@ -65,12 +65,12 @@
             <form name="place" class="popup__form" novalidate>
                 <h3 class="popup__heading">Новое место</h3>
                 <label class="popup__field">
-                    <input type="text" id="title-input" name="title-input" class="popup__input popup__input_el_title"
+                    <input type="text" id="title-input" name="name" class="popup__input popup__input_el_title"
                         placeholder="Название" minlength="2" maxlength="30" required>
                     <span class="title-input-error"></span>
                 </label>
                 <label class="popup__field">
-                    <input type="url" id="img-input" name="img-input" class="popup__input popup__input_el_img"
+                    <input type="url" id="img-input" name="link" class="popup__input popup__input_el_img"
                         placeholder="Ссылка на картинку" required>
                     <span class="img-input-error"></span>
                 </label>
@@ -80,7 +80,7 @@
     </div>
     <div class="popup popup-image">
         <div class="popup-image__container">
-            <button type="button" aria-label="Закрыть" class="button popup__close-btn"></button>
+            <button type="button" aria-label="Закрыть" class="button popup-image__close-btn"></button>
             <img src="#" alt="Фото карточки" class="popup-image__image">
             <h3 class="popup-image__heading"></h3>
         </div>

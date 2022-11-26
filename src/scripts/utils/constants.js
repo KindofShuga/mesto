@@ -56,7 +56,3 @@ export const popupImage = document.querySelector('.popup-image');
 export const cardsContainer = document.querySelector('.cards');
 export const profileValidation = new FormValidator(settings, popupProfileFormElement);
 export const newCardValidation = new FormValidator(settings, popupPlaceFormElement);
-
-export const popupProfileClass = new Popup(popupProfile);
-export const popupPlaceClass = new Popup(popupPlace);
-export const popupImageClass = new Popup(popupImage);
