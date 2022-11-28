@@ -1,19 +1,20 @@
 import '../../pages/index.css';
 import Card from '../components/Card.js';
 import Section from '../components/Section.js';
+import PopupWithForm from '../components/PopupWithForm.js';
 import {
   initialCards,
   profileEditButton,
   profileAddButton,
-  popupProfileWithForm,
-  popupPlaceWithForm,
+  popupProfile,
+  popupPlace,
   popupWithImage,
   userInfo,
   cardsContainer,
   profileValidation,
   newCardValidation,
   nameInput,
-  jobInput
+  jobInput,
 } from '../utils/constants.js'
 
 const createCard = (item) => {
@@ -25,24 +26,25 @@ const createCard = (item) => {
   const cardElement = card.generateCard();
   return cardElement
 };
-const addSection = (item) => {
-  const section = new Section({
-    items: item,
-    renderer: (item) => {
-      const newCard = createCard(item);
-      section.addItem(newCard)
-    }
-  }, cardsContainer);
-  const sectionElement = section.renderItems();
-  return sectionElement
-};
+const section = new Section({
+  items: initialCards,
+  renderer: (item) => {
+    const newCard = createCard(item);
+    section.addItem(newCard);
+  }
+}, cardsContainer);
 
-export const submitProfileForm = (data) => {
+const submitProfileForm = (data) => {
   userInfo.setUserInfo(data);
 };
-export const submitPlaceForm = (inputs) => {
-  addSection(inputs);
+const submitPlaceForm = (inputs) => {
+  const newCard = createCard(inputs);
+  section.addItem(newCard);
 };
+
+const popupProfileWithForm = new PopupWithForm(popupProfile, submitProfileForm);
+const popupPlaceWithForm = new PopupWithForm(popupPlace, submitPlaceForm);
+
 profileEditButton.addEventListener('click', function () {
   popupProfileWithForm.open();
   const info = userInfo.getUserInfo();
@@ -58,6 +60,6 @@ profileAddButton.addEventListener('click', function () {
 popupProfileWithForm.setEventListeners();
 popupPlaceWithForm.setEventListeners();
 popupWithImage.setEventListeners();
-addSection(initialCards);
+section.renderItems()
 profileValidation.enableValidation();
 newCardValidation.enableValidation();

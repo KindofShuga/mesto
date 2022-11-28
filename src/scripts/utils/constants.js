@@ -1,8 +1,7 @@
 import FormValidator from '../components/FormValidator.js';
-import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
-import { submitProfileForm, submitPlaceForm } from '../pages/index.js';
+
 export const initialCards = [
     {
         name: 'Архыз',
@@ -59,7 +58,5 @@ export const popupImage = document.querySelector('.popup-image');
 export const cardsContainer = document.querySelector('.cards');
 export const profileValidation = new FormValidator(settings, popupProfileFormElement);
 export const newCardValidation = new FormValidator(settings, popupPlaceFormElement);
-export const popupProfileWithForm = new PopupWithForm(popupProfile, submitProfileForm);
-export const popupPlaceWithForm = new PopupWithForm(popupPlace, submitPlaceForm);
 export const popupWithImage = new PopupWithImage(popupImage);
 export const userInfo = new UserInfo(profileTitle, profileDescription);
