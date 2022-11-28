@@ -26,11 +26,11 @@ const createCard = (item) => {
   const cardElement = card.generateCard();
   return cardElement
 };
-const section = new Section({
+const cardSection = new Section({
   items: initialCards,
   renderer: (item) => {
     const newCard = createCard(item);
-    section.addItem(newCard);
+    cardSection.addItem(newCard);
   }
 }, cardsContainer);
 
@@ -39,7 +39,7 @@ const submitProfileForm = (data) => {
 };
 const submitPlaceForm = (inputs) => {
   const newCard = createCard(inputs);
-  section.addItem(newCard);
+  cardSection.addItem(newCard);
 };
 
 const popupProfileWithForm = new PopupWithForm(popupProfile, submitProfileForm);
@@ -60,6 +60,6 @@ profileAddButton.addEventListener('click', function () {
 popupProfileWithForm.setEventListeners();
 popupPlaceWithForm.setEventListeners();
 popupWithImage.setEventListeners();
-section.renderItems()
+cardSection.renderItems()
 profileValidation.enableValidation();
 newCardValidation.enableValidation();
