@@ -1,4 +1,5 @@
 .cards__like {
+    margin-bottom: 3px;
     min-width: 22px;
     min-height: 19px;
     background-image: url(../../../images/like-icon.svg);
