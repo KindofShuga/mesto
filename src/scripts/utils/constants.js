@@ -29,7 +29,7 @@ const popupPlaceFormElement = popupPlace.querySelector('.popup__form');
 
 const popupImage = document.querySelector('.popup-image');
 
-export const popupConfirm = document.querySelector('.popup-сonfirm');
+export const popupConfirm = document.querySelector('.popup-confirm');
 
 export const popupAvatar = document.querySelector('.popup-avatar');
 const popupAvatarFormElement = popupAvatar.querySelector('.popup__form');
