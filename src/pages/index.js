@@ -1,8 +1,8 @@
-import '../../pages/index.css';
-import Card from '../components/Card.js';
-import Section from '../components/Section.js';
-import PopupWithForm from '../components/PopupWithForm.js';
-import Api from '../components/Api.js';
+import './index.css';
+import Card from '../scripts/components/Card.js';
+import Section from '../scripts/components/Section.js';
+import PopupWithForm from '../scripts/components/PopupWithForm.js';
+import Api from '../scripts/components/Api.js';
 import {
   profileEditButton,
   profileAddButton,
@@ -20,7 +20,7 @@ import {
   avatarValidation,
   popupWithImage,
   userInfo,
-} from '../utils/constants.js';
+} from '../scripts/utils/constants.js';
 
 let userId
 const popupConfirmWithForm = new PopupWithForm(popupConfirm);
@@ -33,12 +33,13 @@ const api = new Api({
   }
 });
 api.getUserAndCard()
-api.getProfile()
-  .then(res => {
-    userInfo.setUserInfo(res);
-    profileAvatar.src = res.avatar;
-    userId = res._id;
+  .then(([user, cards]) => {
+    userInfo.setUserInfo(user);
+    profileAvatar.src = user.avatar;
+    userId = cards._id;
+    cardSection.renderItems(cards);
   })
+  .catch(err => console.log(`Ошибка: ${err}`));
 
 const createCard = (item) => {
   const card = new Card(item, '#cards-template', {
@@ -52,7 +53,11 @@ const createCard = (item) => {
       popupConfirmWithForm.open();
       popupConfirmWithForm.createSubmitHandler(() => {
         api.deleteCard(item._id)
-          .then(() => card.deleteCard());
+          .then(() => {
+            card.deleteCard();
+            popupConfirmWithForm.close();
+          })
+          .catch(err => console.log(`Ошибка: ${err}`));
       })
     },
 
@@ -62,11 +67,13 @@ const createCard = (item) => {
         .then(res => {
           card.setLikesAmount(res.likes)
         })
+        .catch(err => console.log(`Ошибка: ${err}`));
       } else {
         api.addLike(item._id)
           .then(res => {
             card.setLikesAmount(res.likes)
-          });
+          })
+          .catch(err => console.log(`Ошибка: ${err}`));
       }
     }
 
@@ -85,23 +92,29 @@ const cardSection = new Section({
 
 const submitProfileForm = (inputs) => {
   api.addProfile(inputs)
-    .then(() => {
-      userInfo.setUserInfo(inputs);
-    });
+    .then((res) => {
+      userInfo.setUserInfo(res);
+      popupProfileWithForm.close();
+    })
+    .catch(err => console.log(`Ошибка: ${err}`));
 };
 const submitPlaceForm = (inputs) => {
   api.addCard(inputs)
     .then(res => {
       const newCard = createCard(res);
       cardSection.addItem(newCard);
+      popupPlaceWithForm.close();
     })
+    .catch(err => console.log(`Ошибка: ${err}`));
 };
 const submitAvatar = (input) => {
   api.addAvatar(input)
     .then(res => {
       userInfo.setAvatar(res);
+      popupAvatarWithForm.close();
       avatarValidation.resetValidation();
     })
+    .catch(err => console.log(`Ошибка: ${err}`));
 }
 
 const popupProfileWithForm = new PopupWithForm(popupProfile, submitProfileForm);
@@ -123,10 +136,6 @@ profileAvatarEdit.addEventListener('click', () => {
   popupAvatarWithForm.open();
 });
 
-api.getInitialCards()
-  .then(res => {
-    cardSection.renderItems(res);
-  })
 popupProfileWithForm.setEventListeners();
 popupPlaceWithForm.setEventListeners();
 popupWithImage.setEventListeners();
