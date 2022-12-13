@@ -32,15 +32,15 @@ const api = new Api({
     'Content-Type': 'application/json'
   }
 });
+
 api.getUserAndCard()
   .then(([user, cards]) => {
     userInfo.setUserInfo(user);
     profileAvatar.src = user.avatar;
-    userId = cards._id;
+    userId = user._id;
     cardSection.renderItems(cards);
   })
   .catch(err => console.log(`Ошибка: ${err}`));
-
 const createCard = (item) => {
   const card = new Card(item, '#cards-template', {
 

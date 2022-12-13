@@ -8,7 +8,6 @@ export default class Api {
         })
             .then(res => {
                 if (res.ok) {
-                    // console.log(res.json())
                     return res.json();
                 } else {
                     return Promise.reject(`Ошибка: ${res.status}`);
